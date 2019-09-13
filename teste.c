@@ -1,271 +1,9 @@
 #include<stdio.h>
 #include<stdlib.h>
 #include <math.h>
-#include<time.h>
 
 char Matriz[3][3];
 char O = 'O', X = 'X';
-
-int move_cpu_ganhar(char ch)
-{
-	int l;
-	for(l=0;l<3;l++)
-	{
-		if(((Matriz[0][l] == Matriz[2][l]) && Matriz[1][l] == ' '))
-		{
-			if(Matriz[0][l] == ch && Matriz[2][l] == ch)
-			{
-				Matriz[1][l] = ch;
-				return 1;
-			}
-		}
-	}
-
-	for(l=0;l<3;l++)
-	{
-		if(((Matriz[l][0] == Matriz[l][2]) && Matriz[l][1] == ' '))
-		{
-			if(Matriz[l][0] == ch && Matriz[l][2] == ch)
-			{
-				Matriz[l][1] = ch;
-				return 1;
-			}
-		}
-	}
-
-	if(((Matriz[0][0] == Matriz[2][2]) && Matriz[1][1] == ' '))
-	{
-		if(Matriz[0][0] == ch && Matriz[2][2] == ch)
-		{
-			Matriz[1][1] = ch;
-			return 1;
-		}
-	}
-
-	if(((Matriz[0][2] == Matriz[2][0]) && Matriz[1][1] == ' '))
-	{
-		if(Matriz[0][2] == ch && Matriz[2][0] == ch)
-		{
-			Matriz[1][1] = ch;
-			return 1;
-		}
-	}	
-
-// estou aqui
-	if(((Matriz[0][0] == Matriz[1][1]) && Matriz[2][2] == ' '))
-	{
-		if(Matriz[0][0] == ch && Matriz[1][1] == ch)
-		{
-			Matriz[2][2] = ch;
-			return 1;
-		}
-	}
-
-	if(((Matriz[0][2] == Matriz[1][1]) && Matriz[2][0] == ' '))
-	{
-		if(Matriz[0][2] == ch && Matriz[1][1] == ch)
-		{
-			Matriz[2][0] = ch;
-			return 1;
-		}
-	}
-
-	if(((Matriz[2][0] == Matriz[1][1]) && Matriz[0][2] == ' '))
-	{
-		if(Matriz[2][0] == ch && Matriz[1][1] == ch)
-		{
-			Matriz[0][2] = ch;
-			return 1;
-		}
-	}
-
-	if(((Matriz[2][2] == Matriz[1][1]) && Matriz[0][0] == ' '))
-	{
-		if(Matriz[2][2] == ch && Matriz[1][1] == ch)
-		{
-			Matriz[0][0] = ch;
-			return 1;
-		}
-	}
-// finalizado
-}
-
-int move_cpu_estrategia(char ch)
-{
-	if (((Matriz[0][0] == Matriz[0][2])&& Matriz[0][0] == ' ') || 
-		((Matriz[2][0] == Matriz[2][2]) && Matriz[0][0] == ' '))
-	{
-		if((Matriz[0][0] == ch && Matriz[0][2] == ch)||
-			(Matriz[2][0] == ch && Matriz[0][2] == ch))
-		{
-			Matriz[1][1] == ch;
-			return 1;
-		}
-	}
-
-	
-}
-
-void move_cpu_rand( char ch)
-{
-	int x,y;
-
-	if(Matriz[0][0] == ' ')
-	{
-		Matriz[0][0] = ch;
-	}
-	else if(Matriz[0][2] == ' ')
-	{
-		Matriz[0][2] = ch;
-	}
-	else if(Matriz[2][0] == ' ')
-	{
-		Matriz[2][0] = ch;
-	}
-	else if(Matriz[2][2] == ' ')
-	{
-		Matriz[2][2] = ch;
-	}
-	else
-	{
-		do
-		{
-			srand(time(NULL));
-			x = rand()%3;
-			y = rand()%3;
-		}while(Matriz[x][y] != ' ');
-
-		Matriz[x][y] = ch;
-	}     
-}
-
-int linha1( char ch )
-{
-	if(Matriz[0][0] == ' ')
-	{
-		if(((Matriz[0][1] == Matriz[0][2]) && (Matriz[0][1] != ' ')) ||
-			((Matriz[1][0] == Matriz[2][0]) && (Matriz[1][0] != ' ')) ||
-			((Matriz[1][1] == Matriz[2][2]) && (Matriz[1][1] != ' ')))
-		{
-			Matriz[0][0] = ch;
-			return 1;
-		}
-	}
-
-	if(Matriz[0][1] == ' ')
-	{
-		if(((Matriz[0][0] == Matriz[0][2]) && (Matriz[0][0] != ' ')) ||
-			((Matriz[1][1] == Matriz[2][1]) && (Matriz[1][1] != ' ')))
-		{
-			Matriz[0][1] = ch;
-			return 1;
-		}
-	}
-
-	if(Matriz[0][2] == ' ')
-	{
-		if(((Matriz[0][1] == Matriz[0][0]) && (Matriz[0][1] != ' ')) ||
-			((Matriz[1][2] == Matriz[2][2]) && (Matriz[1][2] != ' ')) ||
-			((Matriz[1][1] == Matriz[2][0]) && (Matriz[1][1] != ' ')))
-		{
-			Matriz[0][2] = ch;
-			return 1;
-		}
-	}
-
-	return 0;
-}
-
-int linha2( char ch )
-{
-	if(Matriz[1][0] == ' ')
-	{
-		if(((Matriz[0][0] == Matriz[2][0]) && (Matriz[0][0] != ' ')) ||
-			((Matriz[1][1] == Matriz[1][2]) && (Matriz[1][1] != ' ')))
-		{
-			Matriz[1][0] = ch;
-			return 1;
-		}
-	}
-
-	if(Matriz[1][1] == ' '){
-		if(((Matriz[0][0] == Matriz[2][2]) && (Matriz[0][0] != ' ')) ||
-			((Matriz[0][2] == Matriz[2][0]) && (Matriz[0][2] != ' ')) ||
-			((Matriz[1][0] == Matriz[1][2]) && (Matriz[1][0] != ' ')) ||
-			((Matriz[0][1] == Matriz[2][1]) && (Matriz[0][1] != ' ')))
-		{
-			Matriz[1][1] = ch;
-			return 1;
-		}
-	}
-
-	if(Matriz[1][2] == ' '){
-		if(((Matriz[1][1] == Matriz[1][0]) && (Matriz[1][1] != ' ')) ||
-			((Matriz[0][2] == Matriz[2][0]) && (Matriz[0][2] != ' ')))
-		{
-			Matriz[1][2] = ch;
-			return 1;
-		}
-	}
-
-	return 0;
-}
-
-int linha3( char ch )
-{
-	if(Matriz[2][0] == ' ')
-	{
-		if(((Matriz[0][0] == Matriz[1][0]) && (Matriz[0][0] != ' ')) ||
-			((Matriz[2][1] == Matriz[2][2]) && (Matriz[2][1] != ' ')) ||
-			((Matriz[1][1] == Matriz[0][2]) && (Matriz[1][1] != ' ')))
-		{
-			Matriz[2][0] = ch;
-			return 1;
-		}
-	}
-
-	if(Matriz[2][1] == ' ')
-	{
-		if(((Matriz[2][0] == Matriz[2][2]) && (Matriz[2][0] != ' ')) ||
-			((Matriz[1][1] == Matriz[0][1]) && (Matriz[1][1] != ' ')))
-		{
-			Matriz[2][1] = ch;
-			return 1;
-		}
-	}
-
-	if(Matriz[2][2] == ' ')
-	{
-		if(((Matriz[2][1] == Matriz[2][0]) && (Matriz[2][1] != ' ')) ||
-			((Matriz[0][2] == Matriz[1][2]) && (Matriz[0][2] != ' ')) ||
-			((Matriz[1][1] == Matriz[0][0]) && (Matriz[1][1] != ' ')))
-		{
-			Matriz[2][2] = ch;
-			return 1;
-		}
-	}
-
-	return 0;
-}
-
-int player( char ch){
-
-	if(linha1(ch) || linha2(ch) || linha3(ch))
-	{
-		return 1;
-	}
-
-	return 0;
-}
-
-void move_cpu( char ch){
-
-	if(player( ch ))
-	{
-		return;
-	}
-	move_cpu_rand(ch);
-}
 
 void print()
 {
@@ -278,9 +16,9 @@ void print()
 		{
 			printf(" %c %c", Matriz[i][j], j == 2 ? '\n' : '|');
 		}
-        printf("%s", i == 2 ? "\n" : "\t---|---|---\n");
+		printf("\t%s", i == 2 ? " " : "---|---|---\n");
 	}
-    
+
 }
 
 int verificadorDeVencedor()
@@ -324,72 +62,37 @@ void verificadorPos(int jogador,int i, int j)
 
 	if(jogador == 1)
 	{
-		Matriz[i][j] = X;
+		Matriz[i][j] = O;
 	}
 	else
 	{
-		Matriz[i][j] = O;
+		Matriz[i][j] = X;
 	}
 }
 
-int add_player1(int cont)
+int add(int cont)
 {
 	int i,j;
-	
 	printf("cont: %d\n\n", cont);
 	printf("\n\nJogador1 jogar:\n");
 	printf("Digite a posição que vc queira jogador1: (linha, coluna)\n");
 	scanf("%d %d",&i,&j);
 	verificadorPos(1,i,j);
 	print();
-	if(verificadorDeVencedor())
-	{
+	if(verificadorDeVencedor()){
 		return 1;
 	}
 	
 	if(cont < 5)
 	{
-		printf("\n\nCpu jogando ...\n");
-		move_cpu(O);
-		print();
-		if(verificadorDeVencedor())
-		{
-			return 1;
-		}
-	}
-	else
-	{
-		printf("\tDeu velha !!!\n");
-		return 1;
-	}
-	return 0;
-}
-
-int add_player2(int cont)
-{
-	int i,j;
-	
-	printf("\n\nCpu jogando ...\n");
-	move_cpu(X);
-	print();
-	if(verificadorDeVencedor())
-	{
-		return 1;
-	}
-	
-	if(cont < 5)
-	{
-		printf("cont: %d\n\n", cont);
-		printf("\n\nJogador1 jogar:\n");
-		printf("Digite a posição que vc queira jogador1: (linha, coluna)\n");
+		printf("\n\nJogador2 jogar:\n");
+		printf("Digite a posição que vc queira jogador2: (linha, coluna)\n");
 		scanf("%d %d",&i,&j);
 		verificadorPos(2,i,j);
 		print();
-		if(verificadorDeVencedor())
-		{
+		if(verificadorDeVencedor()){
 			return 1;
 		}
-
 	}
 	else
 	{
@@ -413,34 +116,15 @@ void iniciarMatriz()
 
 int main ()
 {
-	int n,opc;
+
+	int n;
 
 	iniciarMatriz();
-	printf("Escolha qual player você será:\n");
-	printf("1 - Player1\n");
-	printf("2 - PLayer2\n");
-	scanf("%d",&opc);
-
-	if(opc == 1)
+	for(n = 1;n < 9;n++)
 	{
-		for(n = 1;n < 9;n++)
-		{
-			if(add_player1(n))
-			{
-				return 0;
-			}
+		if(add(n)){
+			return 0;
 		}
 	}
-	else
-	{
-		for(n = 1;n < 9;n++)
-		{
-			if(add_player2(n))
-			{
-				return 0;
-			}
-		}
-	}
-
 	return 0;
 }
