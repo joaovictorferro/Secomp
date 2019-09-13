@@ -32,7 +32,7 @@ int verificadorDeVencedor()
 		(Matriz[0][0]==O && Matriz[1][1]==O && Matriz[2][2]==O)||
 		(Matriz[0][2]==O && Matriz[1][1]==O && Matriz[2][0]==O))
 	{
-		printf("\n\a\t\tJogador 1 e o vencedor, PARABENS!!!\n\n\n");
+		printf("\n\tJogador 1 e o vencedor, PARABENS!!!\n\n\n");
 		return 1;
 	}
 	if((Matriz[0][0]==X && Matriz[0][1]==X && Matriz[0][2]==X)||
@@ -44,7 +44,7 @@ int verificadorDeVencedor()
 		(Matriz[0][0]==X && Matriz[1][1]==X && Matriz[2][2]==X)||
 		(Matriz[0][2]==X && Matriz[1][1]==X && Matriz[2][0]==X))
 	{
-		printf("\n\n\n\n\a\t\tJogador 2 e o vencedor, PARABENS!!!\n\n\n");
+		printf("\n\tJogador 2 e o vencedor, PARABENS!!!\n\n\n");
 		return 1;
 	}
 
@@ -96,7 +96,7 @@ int add(int cont)
 	}
 	else
 	{
-		printf("\tDeu velha !!!\n");
+		printf("\n\tDeu velha !!!\n");
 		return 1;
 	}
 	return 0;
@@ -116,9 +116,7 @@ void iniciarMatriz()
 
 int main ()
 {
-
 	int n;
-
 	iniciarMatriz();
 	for(n = 1;n < 9;n++)
 	{
