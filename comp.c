@@ -173,20 +173,12 @@ void print()
 
 	for(i = 0; i < 3; i++)
 	{
-		printf("\t|");
+		printf("\t");
 		for(j = 0; j < 3; j++)
 		{
-			if(j == 2){
-				printf(" %c |", Matriz[i][j]);
-			}
-			if ( j!= 2 ){
-				printf(" %c |", Matriz[i][j]);
-			}
-			else{
-				printf("\n");
-				printf("\t-------------\n");
-			}
+			printf(" %c %c", Matriz[i][j], j == 2 ? '\n' : '|');
 		}
+        printf("%s", i == 2 ? "\n" : "\t---|---|---\n");
 	}
 
 }

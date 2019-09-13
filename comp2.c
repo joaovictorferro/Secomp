@@ -6,7 +6,7 @@
 char Matriz[3][3];
 char O = 'O', X = 'X';
 
-void move_cpu_ganhar(char ch)
+int move_cpu_ganhar(char ch)
 {
 	int l;
 	for(l=0;l<3;l++)
@@ -90,7 +90,7 @@ void move_cpu_ganhar(char ch)
 // finalizado
 }
 
-void move_cpu_estrategia(char ch)
+int move_cpu_estrategia(char ch)
 {
 	if (((Matriz[0][0] == Matriz[0][2])&& Matriz[0][0] == ' ') || 
 		((Matriz[2][0] == Matriz[2][2]) && Matriz[0][0] == ' '))
@@ -273,22 +273,14 @@ void print()
 
 	for(i = 0; i < 3; i++)
 	{
-		printf("\t|");
+		printf("\t");
 		for(j = 0; j < 3; j++)
 		{
-			if(j == 2){
-				printf(" %c |", Matriz[i][j]);
-			}
-			if ( j!= 2 ){
-				printf(" %c |", Matriz[i][j]);
-			}
-			else{
-				printf("\n");
-				printf("\t-------------\n");
-			}
+			printf(" %c %c", Matriz[i][j], j == 2 ? '\n' : '|');
 		}
+        printf("%s", i == 2 ? "\n" : "\t---|---|---\n");
 	}
-
+    
 }
 
 int verificadorDeVencedor()
