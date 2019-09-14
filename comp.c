@@ -344,20 +344,12 @@ void print()
 
 	for(i = 0; i < 3; i++)
 	{
-		printf("\t|");
+		printf("\t");
 		for(j = 0; j < 3; j++)
 		{
-			if(j == 2){
-				printf(" %c |", Matriz[i][j]);
-			}
-			if ( j!= 2 ){
-				printf(" %c |", Matriz[i][j]);
-			}
-			else{
-				printf("\n");
-				printf("\t-------------\n");
-			}
+			printf(" %c %c", Matriz[i][j], j == 2 ? '\n' : '|');
 		}
+		printf("\t%s", i == 2 ? " " : "---|---|---\n");
 	}
 
 }
@@ -415,7 +407,6 @@ int add_player1(int cont)
 {
 	int i,j;
 	
-	printf("cont: %d\n\n", cont);
 	printf("\n\nJogador1 jogar:\n");
 	printf("Digite a posição que vc queira jogador1: (linha, coluna)\n");
 	scanf("%d %d",&i,&j);
@@ -458,7 +449,6 @@ int add_player2(int cont)
 	
 	if(cont < 5)
 	{
-		printf("cont: %d\n\n", cont);
 		printf("\n\nJogador1 jogar:\n");
 		printf("Digite a posição que vc queira jogador2: (linha, coluna)\n");
 		scanf("%d %d",&i,&j);
@@ -520,5 +510,6 @@ int main ()
 			}
 		}
 	}
+
 	return 0;
 }
