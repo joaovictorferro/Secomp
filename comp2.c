@@ -92,8 +92,8 @@ int move_cpu_ganhar(char ch)
 
 int move_cpu_estrategia(char ch)
 {
-	if (((Matriz[0][0] == Matriz[0][2])&& Matriz[0][0] == ' ') || 
-		((Matriz[2][0] == Matriz[2][2]) && Matriz[0][0] == ' '))
+	if (((Matriz[0][0] == Matriz[0][2])&& Matriz[1][1] == ' ') || 
+		((Matriz[2][0] == Matriz[2][2]) && Matriz[1][1] == ' '))
 	{
 		if((Matriz[0][0] == ch && Matriz[0][2] == ch)||
 			(Matriz[2][0] == ch && Matriz[0][2] == ch))
@@ -101,6 +101,37 @@ int move_cpu_estrategia(char ch)
 			Matriz[1][1] == ch;
 			return 1;
 		}
+
+	}
+	if (((Matriz[0][2] == Matriz[2][2])&& Matriz[1][2] == ' ') || 
+		((Matriz[0][0] == Matriz[2][0]) && Matriz[1][0] == ' '))
+	{
+		if((Matriz[0][2] == ch && Matriz[2][2] == ch))
+		{
+			Matriz[1][2] == ch;
+			return 1;
+		}
+		if((Matriz[0][0] == ch && Matriz[2][0] == ch))
+		{
+			Matriz[1][0] == ch;
+			return 1;
+		}
+
+	}
+	if (((Matriz[0][0] == Matriz[0][2])&& Matriz[0][1] == ' ') || 
+		((Matriz[2][0] == Matriz[2][2]) && Matriz[0][2] == ' '))
+	{
+		if((Matriz[0][0] == ch && Matriz[0][2] == ch))
+		{
+			Matriz[0][1] == ch;
+			return 1;
+		}
+		if((Matriz[2][0] == ch && Matriz[2][2] == ch))
+		{
+			Matriz[2][1] == ch;
+			return 1;
+		}
+
 	}
 
 	
