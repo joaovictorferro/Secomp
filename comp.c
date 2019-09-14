@@ -327,28 +327,14 @@ void move_cpu( char ch)
 	move_cpu_rand(ch);
 }
 
-void print()
-{
-	int i,j;
-
-	for(i = 0; i < 3; i++)
-	{
-		printf("\t|");
-		for(j = 0; j < 3; j++)
-		{
-			if(j == 2){
-				printf(" %c |", Matriz[i][j]);
-			}
-			if ( j!= 2 ){
-				printf(" %c |", Matriz[i][j]);
-			}
-			else{
-				printf("\n");
-				printf("\t-------------\n");
-			}
+void print() {
+	for(int i = 0; i < 3; i++) {
+		printf("\t");
+		for(int j = 0; j < 3; j++) {
+			printf(" %c %c", Matriz[i][j], j == 2 ? '\n' : '|');
 		}
+		printf("%s", i == 2 ? "\n" : "\t---|---|---\n");
 	}
-
 }
 
 int verificadorDeVencedor()
