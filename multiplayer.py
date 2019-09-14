@@ -108,6 +108,8 @@ def main():
         print("\tJogador 2 venceu!!\n")
     else:
         print("\tDeu velha!!\n")
+
+    a = input("\n\n\nPressione qualquer tecla para encerrar!")
     
 
 #----------------------------------
