@@ -6,6 +6,43 @@
 char Matriz[3][3];
 char O = 'O', X = 'X';
 
+void move_cpu_rand( char ch)
+{
+	int x,y;
+
+	if(Matriz[1][1] == ' ')
+	{
+		Matriz[1][1] = ch;
+	}
+	else if(Matriz[0][0] == ' ')
+	{
+		Matriz[0][0] = ch;
+	}
+	else if(Matriz[0][2] == ' ')
+	{
+		Matriz[0][2] = ch;
+	}
+	else if(Matriz[2][0] == ' ')
+	{
+		Matriz[2][0] = ch;
+	}
+	else if(Matriz[2][2] == ' ')
+	{
+		Matriz[2][2] = ch;
+	}
+	else 
+	{
+		do
+		{
+			srand(time(NULL));
+			x = rand()%3;
+			y = rand()%3;
+		}while(Matriz[x][y] != ' ');
+
+		Matriz[x][y] = ch;
+	} 
+}
+
 int move_cpu_ganhar(char ch)
 {
 	int l;
@@ -104,29 +141,27 @@ int move_cpu_ganhar(char ch)
 
 int move_cpu_estrategia(char ch)
 {
-	if (((Matriz[0][0] == Matriz[0][2]) && Matriz[1][1] == ' ') || 
-		((Matriz[2][0] == Matriz[2][2]) && Matriz[1][1] == ' ') ||
-		((Matriz[0][0] == Matriz[2][0]) && Matriz[1][1] == ' ') ||
-		((Matriz[0][2] == Matriz[2][2]) && Matriz[1][1] == ' '))
 
+	if((Matriz[1][1] == Matriz[2][2]) ||
+		(Matriz[1][1] == Matriz[0][2]) ||
+		(Matriz[1][1] == Matriz[2][0]))
 	{
-		if((Matriz[0][0] == ch && Matriz[0][2] == ch)||
-			(Matriz[2][0] == ch && Matriz[0][2] == ch))
+		if((Matriz[1][1] != ' ' && Matriz[2][2] != ' ') && (Matriz[1][1] != ch && Matriz[2][2] != ch))
 		{
-			Matriz[1][1] = ch;
+			move_cpu_rand(ch);
+			return 1;
+		}
+		if((Matriz[1][1] != ' ' && Matriz[0][2] != ' ') && (Matriz[1][1] != ch && Matriz[0][2] != ch))
+		{
+			move_cpu_rand(ch);
+			return 1;
+		}
+		if((Matriz[1][1] != ' ' && Matriz[2][0] != ' ') && (Matriz[1][1] != ch && Matriz[2][0] != ch))
+		{
+			move_cpu_rand(ch);
 			return 1;
 		}
 	}
-
-	if(((Matriz[0][0] == Matriz[0][1]) && Matriz[1][1] == ' '))
-	{
-		if(Matriz[0][0] != ch  && Matriz[0][1] != ch)
-		{
-			Matriz[1][1] = ch;
-			return 1;
-		}
-	}
-
 	if(((Matriz[0][0] == Matriz[1][1]) && Matriz[1][0] == ' ') ||
 		((Matriz[0][0] == Matriz[1][1]) && Matriz[0][1] == ' '))
 	{
@@ -157,58 +192,37 @@ int move_cpu_estrategia(char ch)
 		}	
 	}
 
-	if(((Matriz[0][0] == Matriz[2][2])&& Matriz[1][0] == ' ') ||
+	if(((Matriz[0][0] == Matriz[2][2]) && Matriz[1][0] == ' ') ||
 		((Matriz[0][2] == Matriz[2][0]) && Matriz[1][0] == ' '))
 	{
-		if((Matriz[0][0] != ch && Matriz[2][2] != ch) && Matriz[1][0] == ' ')
+		if((((Matriz[0][0] != ch && Matriz[2][2] != ch) && Matriz[1][0] == ' ') && Matriz[0][0] != ' ') && Matriz[2][2] != ' ')
 		{
 			Matriz[1][0] = ch;
 			return 1;
 		}
-		if((Matriz[0][2] != ch && Matriz[2][0] != ch) && Matriz[1][0] == ' ')
+		if((((Matriz[0][2] != ch && Matriz[2][0] != ch) && Matriz[1][0] == ' ') && Matriz[0][2] != ' ') && Matriz[2][0] != ' ')
 		{
 			Matriz[1][0] = ch;
 			return 1;
 		}
 	}
+
+	if(((Matriz[1][0] == ch && Matriz[1][1] == ch) && Matriz[0][1] == ' ') && Matriz[2][1] == ' ')
+	{
+		Matriz[0][1] = ch;
+		return 1;
+	}
+
+	if(Matriz[1][2] == Matriz[2][1])
+	{
+		if(((Matriz[1][2] != ch && Matriz[2][1] != ch) && Matriz[1][2] != ' ') && Matriz[2][1] != ' ')
+		{
+			Matriz[0][2] = ch;
+			return 1;
+		}
+	}
+
 	return 0;
-}
-
-void move_cpu_rand( char ch)
-{
-	int x,y;
-
-	if(Matriz[1][1] == ' ')
-	{
-		Matriz[1][1] = ch;
-	}
-	else if(Matriz[0][0] == ' ')
-	{
-		Matriz[0][0] = ch;
-	}
-	else if(Matriz[0][2] == ' ')
-	{
-		Matriz[0][2] = ch;
-	}
-	else if(Matriz[2][0] == ' ')
-	{
-		Matriz[2][0] = ch;
-	}
-	else if(Matriz[2][2] == ' ')
-	{
-		Matriz[2][2] = ch;
-	}
-	else 
-	{
-		do
-		{
-			srand(time(NULL));
-			x = rand()%3;
-			y = rand()%3;
-		}while(Matriz[x][y] != ' ');
-
-		Matriz[x][y] = ch;
-	} 
 }
 
 int linha1( char ch )
