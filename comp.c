@@ -1,7 +1,7 @@
-#include<stdio.h>
-#include<stdlib.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include <math.h>
-#include<time.h>
+#include <time.h>
 
 char Matriz[3][3];
 char O = 'O', X = 'X';
@@ -141,6 +141,14 @@ int move_cpu_ganhar(char ch)
 
 int move_cpu_estrategia(char ch)
 {
+	if((Matriz[2][0] == Matriz[1][2]) && Matriz[0][1] == ' ')
+	{
+		if((Matriz[2][0] != ' ' && Matriz[1][2] != ' ') && (Matriz[2][0] != ch && Matriz[1][2] != ch))
+		{
+			Matriz[0][1] = ch;
+			return 1;
+		}
+	}
 
 	if((Matriz[1][1] == Matriz[2][2]) ||
 		(Matriz[1][1] == Matriz[0][2]) ||
