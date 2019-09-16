@@ -145,18 +145,32 @@ int move_cpu_estrategia(char ch)
 	if(((Matriz[0][2] == Matriz[1][1]) && Matriz[1][2] == ' ')||
 		((Matriz[0][2] == Matriz[1][1]) && Matriz[0][1] == ' '))
 	{
-		if(((Matriz[0][2] == ch && Matriz[1][1] == ch) && Matriz[1][2] == ' '))
+		if((Matriz[0][2] == ch && Matriz[1][1] == ch) && Matriz[1][2] == ' ')
 		{
 			Matriz[1][2] = ch;
 			return 1;
 		}
-		if(((Matriz[0][2] == ch && Matriz[1][1] == ch) && Matriz[0][1] == ' '))
+		if((Matriz[0][2] == ch && Matriz[1][1] == ch) && Matriz[0][1] == ' ')
 		{
 			Matriz[0][1] = ch;
 			return 1;
 		}	
 	}
 
+	if(((Matriz[0][0] == Matriz[2][2])&& Matriz[1][0] == ' ') ||
+		((Matriz[0][2] == Matriz[2][0]) && Matriz[1][0] == ' '))
+	{
+		if((Matriz[0][0] != ch && Matriz[2][2] != ch) && Matriz[1][0] == ' ')
+		{
+			Matriz[1][0] = ch;
+			return 1;
+		}
+		if((Matriz[0][2] != ch && Matriz[2][0] != ch) && Matriz[1][0] == ' ')
+		{
+			Matriz[1][0] = ch;
+			return 1;
+		}
+	}
 	return 0;
 }
 
@@ -318,9 +332,13 @@ int player( char ch)
 	return 0;
 }
 
-void move_cpu( char ch)
+void move_cpu( char ch, int cont)
 {
-
+	if (cont == 1)
+	{
+		move_cpu_rand(ch);
+		return ;
+	}
 	if (move_cpu_ganhar(ch))
 	{
 		return ;
@@ -420,7 +438,7 @@ int add_player1(int cont)
 	if(cont < 5)
 	{
 		printf("\n\nCpu jogando ...\n");
-		move_cpu(O);
+		move_cpu(O,cont);
 		print();
 		if(verificadorDeVencedor())
 		{
@@ -440,7 +458,7 @@ int add_player2(int cont)
 	int i,j;
 	
 	printf("\n\nCpu jogando ...\n");
-	move_cpu(X);
+	move_cpu(X,cont);
 	print();
 	if(verificadorDeVencedor())
 	{
