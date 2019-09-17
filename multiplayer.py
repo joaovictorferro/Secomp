@@ -1,8 +1,17 @@
 import os
 
+
+"""
+    Matriz global que representa o tabuleiro do jogo;
+"""
 global matriz
 matriz = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
 
+
+"""
+    Função que imprime as posições do tabuleiro;
+    Função sem valor de retorno;
+"""
 def posicoes():
     aux = 1
     print("Posicoes do jogo:\n")
@@ -18,7 +27,12 @@ def posicoes():
             print()
         else:
             print("\t---|---|---")
-            
+
+
+"""
+    Função que imprime o estado atual do tabuleiro;
+    Função sem valor de retorno;
+"""
 def mapa():
     for i in range(0,3):
         print("\t", end='')
@@ -31,7 +45,12 @@ def mapa():
             print()
         else:
             print("\t---|---|---")
-        
+
+
+"""
+    Função que executa o movimento pedido pelo jogador;
+    Função sem valor de retorno;
+"""
 def jogada(pos, player):
     if pos == 1:
         x = 0; y = 0;
@@ -63,6 +82,11 @@ def jogada(pos, player):
     else:
         matriz[x][y] = player
 
+
+"""
+    Função que verifica o vencedor da partida;
+    Retorna o caracter usado pelo vencedor ou um espaço, representando que o jogo está em andamento;
+"""
 def verificar():
     for i in range(0,3):
         if matriz[i][0] == matriz[i][1] == matriz[i][2]:
@@ -80,6 +104,11 @@ def verificar():
 
     return ' '
 
+
+"""
+    Função que verifica se houve empate no jogo;
+    Retorna um valor booleano;
+"""
 def velha():
     for i in range(0,3):
         for j in range(0,3):
@@ -87,6 +116,11 @@ def velha():
                 return False
     return True
 
+
+"""
+    Função principal, que chama as funções necessárias para o jogo;
+    Função sem valor de retorno;
+"""
 def main():
     print("Bem vindo(a) ao Jogo da Velha da Oficina de Teoria dos Jogos!")
     check = ' '
@@ -112,6 +146,7 @@ def main():
         os.system('cls' if os.name == 'nt' else 'clear')
     
     os.system('cls' if os.name == 'nt' else 'clear')
+    print("\n")
     mapa()
 
     if check == 'O':
@@ -122,7 +157,7 @@ def main():
         print("\tDeu velha!!\n")
 
     a = input("\n\n\nPressione qualquer tecla para encerrar!")
-    
+
 
 #----------------------------------
 main()
