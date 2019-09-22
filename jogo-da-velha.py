@@ -237,19 +237,19 @@ def main():
     check = ' '
   
     while check == ' ':
-        posicoes()
-        mapa()
-        pos = int(input("Digite o valor de uma posicao no tabuleiro: "))
-        jogada(pos, 'O')
+        print("CPU jogando...")
+        posCPU = findBestMove('O')
+        jogadaCPU(posCPU[0], posCPU[1], 'O')
         check = verificar()
         if check != ' ':
             break
         if velha() == True:
             break
         os.system('cls' if os.name == 'nt' else 'clear')
-        posCPU = findBestMove('X')
-        jogadaCPU(posCPU[0], posCPU[1], 'X')
-        check = verificar()
+        posicoes()
+        mapa()
+        pos = int(input("Digite o valor de uma posicao no tabuleiro: "))
+        jogada(pos, 'X')
         if velha() == True:
             break
     
@@ -258,9 +258,9 @@ def main():
     mapa()
 
     if check == 'O':
-        print("\tJogador 1 venceu!!\n")
+        print("\tCPU venceu!!\n")
     elif check == 'X':
-        print("\tJogador 2 venceu!!\n")
+        print("\tParabéns, você venceu!!\n")
     else:
         print("\tDeu velha!!\n")
 
