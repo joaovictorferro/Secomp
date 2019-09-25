@@ -13,13 +13,14 @@ matriz = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
     Função sem valor de retorno;
 """
 def posicoes():
-    aux = 1
+    aux = 7
     print("Posicoes do jogo:\n")
     for i in range(0,3):
         print("\t", end='')
         for j in range(0,3):
             if j == 2:
                 print(" %d" %aux)
+                aux = 3 if i == 0 else 0
             else:
                 print(" %d" %aux + " |", end='')
             aux += 1
@@ -52,11 +53,11 @@ def mapa():
     Função sem valor de retorno;
 """
 def jogada(pos, player):
-    if pos == 1:
+    if pos == 7:
         x = 0; y = 0;
-    elif pos == 2:
+    elif pos == 8:
         x = 0; y = 1;
-    elif pos == 3:
+    elif pos == 9:
         x = 0; y = 2;
     elif pos == 4:
         x = 1; y = 0;
@@ -64,11 +65,11 @@ def jogada(pos, player):
         x = 1; y = 1;
     elif pos == 6:
         x = 1; y = 2;
-    elif pos == 7:
+    elif pos == 1:
         x = 2; y = 0;
-    elif pos == 8:
+    elif pos == 2:
         x = 2; y = 1;
-    elif pos == 9:
+    elif pos == 3:
         x = 2; y = 2;
     else:
         print("Movimento invalido, tente novamente!\n");

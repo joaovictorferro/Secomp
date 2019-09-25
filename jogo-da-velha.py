@@ -10,7 +10,7 @@ matriz = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
     Função que verifica se o movimento continuará a partidad ou resultará em vitória, empate ou derrota;
     Retorna um inteiro que representa a "pontuação" do tabuleiro, onde 10 representa vitória, -10 derrota e 0 empate;
 """
-def evaluate(cpu, player):
+def dar_valor(cpu, player):
     for i in range(0,3):
         if matriz[i][0] == matriz[i][1] == matriz[i][2]:
             if matriz[i][0] == cpu: 
@@ -44,7 +44,7 @@ def evaluate(cpu, player):
     Função que verifica se ainda há movimentos disponíveis;
     Retorna um valor booleano informando se há ou não movimentos;
 """
-def isMovesLeft():
+def tem_movimentos_restantes():
 	for i in range(0,3):
 		for j in range(0,3):
 			if matriz[i][j] == ' ':
@@ -61,14 +61,14 @@ def minimax(profundidade, isMax, cpu):
     if cpu == 'O':
         player = 'X'
 
-    score = evaluate(cpu, player)
+    score = dar_valor(cpu, player)
     if score == 10:
         return score
 
     if score == -10:
         return score
 
-    if isMovesLeft() == False:
+    if tem_movimentos_restantes() == False:
         return 0 
 
     if isMax == True:
@@ -95,7 +95,7 @@ def minimax(profundidade, isMax, cpu):
     Função que encontra a melhor posição a ser jogada pela CPU;
     Retorna uma lista com o valor da linha e coluna do movimento;
 """
-def findBestMove(cpu):
+def melhor_movimento(cpu):
     bestValue = -1000; move = [-1,-1]
     for i in range(0,3):
         for j in range(0,3):
@@ -254,7 +254,7 @@ def main():
         jogada(pos, player)
 
     while check == ' ':
-        posCPU = findBestMove(cpu)
+        posCPU = melhor_movimento(cpu)
         jogadaCPU(posCPU[0], posCPU[1], cpu)
         check = verificar()
         if check != ' ':
