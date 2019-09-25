@@ -116,13 +116,14 @@ def findBestMove(cpu):
     Função sem valor de retorno;
 """
 def posicoes():
-    aux = 1
+    aux = 7
     print("Posicoes do jogo:\n")
     for i in range(0,3):
         print("\t", end='')
         for j in range(0,3):
             if j == 2:
                 print(" %d" %aux)
+                aux = 3 if i == 0 else 0
             else:
                 print(" %d" %aux + " |", end='')
             aux += 1
@@ -163,11 +164,11 @@ def jogadaCPU(x, y, cpu):
     Função sem valor de retorno;
 """
 def jogada(pos, player):
-    if pos == 1:
+    if pos == 7:
         x = 0; y = 0;
-    elif pos == 2:
+    elif pos == 8:
         x = 0; y = 1;
-    elif pos == 3:
+    elif pos == 9:
         x = 0; y = 2;
     elif pos == 4:
         x = 1; y = 0;
@@ -175,11 +176,11 @@ def jogada(pos, player):
         x = 1; y = 1;
     elif pos == 6:
         x = 1; y = 2;
-    elif pos == 7:
+    elif pos == 1:
         x = 2; y = 0;
-    elif pos == 8:
+    elif pos == 2:
         x = 2; y = 1;
-    elif pos == 9:
+    elif pos == 3:
         x = 2; y = 2;
     else:
         print("Movimento invalido, tente novamente!\n");
@@ -233,13 +234,28 @@ def velha():
     Função sem valor de retorno;
 """
 def main():
+    os.system('cls' if os.name == 'nt' else 'clear')
     print("Bem vindo(a) ao Jogo da Velha da Oficina de Teoria dos Jogos!")
     check = ' '
-  
+    player = (input("\nPor favor, selecione X ou O: ")).upper()
+    while player != 'X' and player != 'O':
+        print("Opção inválida!")
+        player = (input("\nPor favor, selecione X ou O: ")).upper()
+    cpu = 'O'
+    if player == 'O':
+        cpu = 'X'
+
+    op = (input("Deseja começar? (s/n) ")).upper()
+    if op == 'S':
+        os.system('cls' if os.name == 'nt' else 'clear')
+        posicoes()
+        mapa()
+        pos = int(input("Digite o valor de uma posicao no tabuleiro: "))
+        jogada(pos, player)
+
     while check == ' ':
-        print("CPU jogando...")
-        posCPU = findBestMove('O')
-        jogadaCPU(posCPU[0], posCPU[1], 'O')
+        posCPU = findBestMove(cpu)
+        jogadaCPU(posCPU[0], posCPU[1], cpu)
         check = verificar()
         if check != ' ':
             break
@@ -249,7 +265,7 @@ def main():
         posicoes()
         mapa()
         pos = int(input("Digite o valor de uma posicao no tabuleiro: "))
-        jogada(pos, 'X')
+        jogada(pos, player)
         if velha() == True:
             break
     
