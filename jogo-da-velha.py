@@ -117,7 +117,7 @@ def melhor_movimento(cpu):
 """
 def posicoes():
     aux = 7
-    print("Posicoes do jogo:\n")
+    print("   Posicoes do jogo:\n")
     for i in range(0,3):
         print("\t", end='')
         for j in range(0,3):
@@ -245,12 +245,16 @@ def main():
     if player == 'O':
         cpu = 'X'
 
-    op = (input("Deseja começar? (s/n) ")).upper()
+    op = (input("\nDeseja começar? (s/n) ")).upper()
+    while op != 'S' and op != 'N':
+        print("Opção inválida!")
+        op = (input("\nDeseja começar? (s/n) ")).upper()
+
     if op == 'S':
         os.system('cls' if os.name == 'nt' else 'clear')
         posicoes()
         mapa()
-        pos = int(input("Digite o valor de uma posicao no tabuleiro: "))
+        pos = int(input("   Player jogando...\n\n   Digite o valor de uma posicao no tabuleiro: "))
         jogada(pos, player)
 
     while check == ' ':
@@ -264,7 +268,7 @@ def main():
         os.system('cls' if os.name == 'nt' else 'clear')
         posicoes()
         mapa()
-        pos = int(input("Digite o valor de uma posicao no tabuleiro: "))
+        pos = int(input("   Player jogando...\n\n   Digite o valor de uma posicao no tabuleiro: "))
         jogada(pos, player)
         if velha() == True:
             break
@@ -273,9 +277,9 @@ def main():
     print("\n")
     mapa()
 
-    if check == 'O':
+    if check == cpu:
         print("\tCPU venceu!!\n")
-    elif check == 'X':
+    elif check == player:
         print("\tParabéns, você venceu!!\n")
     else:
         print("\tDeu velha!!\n")
