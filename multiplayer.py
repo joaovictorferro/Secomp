@@ -14,7 +14,7 @@ matriz = [[' ', ' ', ' '], [' ', ' ', ' '], [' ', ' ', ' ']]
 """
 def posicoes():
     aux = 7
-    print("Posicoes do jogo:\n")
+    print("   Posicoes do jogo:\n")
     for i in range(0,3):
         print("\t", end='')
         for j in range(0,3):
@@ -72,13 +72,13 @@ def jogada(pos, player):
     elif pos == 3:
         x = 2; y = 2;
     else:
-        print("Movimento invalido, tente novamente!\n");
-        aux = int(input("Digite o valor de uma posicao no tabuleiro: "))
+        print("\n   Movimento invalido, tente novamente!");
+        aux = int(input("   Digite o valor de uma posicao no tabuleiro: "))
         jogada(aux, player);
     
     if matriz[x][y] != ' ':
-        print("Movimento invalido, tente novamente!\n");
-        aux = int(input("Digite o valor de uma posicao no tabuleiro: "))
+        print("\n   Movimento invalido, tente novamente!");
+        aux = int(input("   Digite o valor de uma posicao no tabuleiro: "))
         jogada(aux, player);
     else:
         matriz[x][y] = player
@@ -123,13 +123,13 @@ def velha():
     Função sem valor de retorno;
 """
 def main():
-    print("Bem vindo(a) ao Jogo da Velha da Oficina de Teoria dos Jogos!")
+    print("   Bem vindo(a) ao Jogo da Velha da Oficina de Teoria dos Jogos!")
     check = ' '
   
     while check == ' ':
         posicoes()
         mapa()
-        pos = int(input("Digite o valor de uma posicao no tabuleiro: "))
+        pos = int(input("   Player 1 jogando...\n\n   Digite o valor de uma posicao no tabuleiro: "))
         jogada(pos, 'O')
         check = verificar()
         if check != ' ':
@@ -139,7 +139,7 @@ def main():
         os.system('cls' if os.name == 'nt' else 'clear')
         posicoes()
         mapa()
-        pos = int(input("Digite o valor de uma posicao no tabuleiro: "))
+        pos = int(input("   Player 2 jogando...\n\n   Digite o valor de uma posicao no tabuleiro: "))
         jogada(pos, 'X')
         check = verificar()
         if velha() == True:
