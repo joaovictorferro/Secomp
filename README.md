@@ -9,4 +9,4 @@
 #### João Victor Ribeiro
 #### José Rubens Brito
 #### Lucas Lisboa
-#### Paulo Vitor
+#### Paulo Victor
