@@ -8,5 +8,5 @@
 ## Equipe:
 #### João Victor Ribeiro Ferro
 #### José Rubens Brito
-#### Lucas Lisboa
+#### Lucas Albuquerque Lisboa
 #### Paulo Victor Laurentino Severiano
