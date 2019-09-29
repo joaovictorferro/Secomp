@@ -6,7 +6,7 @@
 #### Roberta Vilhena Vieira Lopes
 
 ## Equipe:
-#### João Victor Ribeiro
+#### João Victor Ribeiro Ferro
 #### José Rubens Brito
 #### Lucas Lisboa
-#### Paulo Victor
+#### Paulo Victor Laurentino Severiano
