@@ -1,11 +1,11 @@
 # Secomp 2019
 
-##Universidade Federal de Alagoas
+## Universidade Federal de Alagoas
 
-##Orientador(a):
+## Orientador(a):
 #### Roberta Vilhena Vieira Lopes
 
-##Equipe:
+## Equipe:
 #### João Victor Ribeiro
 #### José Rubens Brito
 #### Lucas Lisboa
