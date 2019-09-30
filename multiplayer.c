@@ -32,7 +32,7 @@ int verificadorDeVencedor()
 		(Matriz[0][0]==O && Matriz[1][1]==O && Matriz[2][2]==O)||
 		(Matriz[0][2]==O && Matriz[1][1]==O && Matriz[2][0]==O))
 	{
-		printf("\n\tJogador 1 e o vencedor, PARABENS!!!\n\n\n");
+		printf("\n\a\t\tJogador 2 é o vencedor, PARABENS!!!\n\n\n");
 		return 1;
 	}
 	if((Matriz[0][0]==X && Matriz[0][1]==X && Matriz[0][2]==X)||
@@ -44,7 +44,7 @@ int verificadorDeVencedor()
 		(Matriz[0][0]==X && Matriz[1][1]==X && Matriz[2][2]==X)||
 		(Matriz[0][2]==X && Matriz[1][1]==X && Matriz[2][0]==X))
 	{
-		printf("\n\tJogador 2 e o vencedor, PARABENS!!!\n\n\n");
+		printf("\n\n\n\n\a\t\tJogador 1 é o vencedor, PARABENS!!!\n\n\n");
 		return 1;
 	}
 
@@ -70,14 +70,85 @@ void verificadorPos(int jogador,int i, int j)
 	}
 }
 
+void printPadrao()
+{
+	printf("\n");
+	printf("\t 7 | 8 | 9 \n");
+	printf("\t---|---|---\n");
+	printf("\t 4 | 5 | 6 \n");
+	printf("\t---|---|---\n");
+	printf("\t 1 | 2 | 3 \n");
+}
+
+void jogada(int pos, char player)
+{
+	int x,y,aux;
+	if (pos == 7)
+	{	
+        x = 0; y = 0;
+	}
+    else if (pos == 8)
+    {
+        x = 0; y = 1;
+    }
+    else if (pos == 9)
+    {
+        x = 0; y = 2;
+    }
+    else if (pos == 4)
+    {
+        x = 1; y = 0;
+    }
+    else if (pos == 5)
+    {
+        x = 1; y = 1;
+    }
+    else if (pos == 6)
+    {
+        x = 1; y = 2;
+    }
+    else if (pos == 1)
+    {
+        x = 2; y = 0;
+    }
+    else if (pos == 2)
+    {
+        x = 2; y = 1;
+    }
+    else if (pos == 3)
+    {
+        x = 2; y = 2;
+    }
+    else
+    {
+    	printf("\nMovimento invalido, tente novamente!");
+        printf("\nDigite o valor de uma posicao no tabuleiro: ");
+        scanf("%d",&aux);
+        jogada(aux, player);
+    }
+    
+    if (Matriz[x][y] != ' ')
+    {
+		printf("\nMovimento invalido, tente novamente!");
+        printf("\nDigite o valor de uma posicao no tabuleiro: ");
+        scanf("%d",&aux);
+        jogada(aux, player);
+    }
+    else
+    {
+        Matriz[x][y] = player;
+    }
+}
+
 int add(int cont)
 {
-	int i,j;
-	printf("cont: %d\n\n", cont);
+	int i;
+
+	printPadrao();
 	printf("\n\nJogador1 jogar:\n");
-	printf("Digite a posição que vc queira jogador1: (linha, coluna)\n");
-	scanf("%d %d",&i,&j);
-	verificadorPos(1,i,j);
+	printf("Digite a posição que você queira jogador1\n");
+	scanf("%d",&i);
+	jogada(i,X);
 	print();
 	if(verificadorDeVencedor()){
 		return 1;
@@ -85,10 +156,11 @@ int add(int cont)
 	
 	if(cont < 5)
 	{
+		printPadrao();
 		printf("\n\nJogador2 jogar:\n");
-		printf("Digite a posição que vc queira jogador2: (linha, coluna)\n");
-		scanf("%d %d",&i,&j);
-		verificadorPos(2,i,j);
+		printf("Digite a posição que você queira jogador2\n");
+		scanf("%d",&i);
+		jogada(i,O);
 		print();
 		if(verificadorDeVencedor()){
 			return 1;
